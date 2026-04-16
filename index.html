@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eDesign | Course Information</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top-header" role="banner">
+      <div class="header-brand">eDesign</div>
+      <div class="header-actions">
+        <button type="button" class="btn btn-ghost">Check In</button>
+        <button type="button" class="btn btn-ghost">Revert</button>
+        <div class="dropdown" id="publishDropdown">
+          <button type="button" class="btn btn-primary" id="publishButton" aria-haspopup="menu" aria-expanded="false">
+            Publish Options <span class="caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown-menu" id="publishMenu" role="menu" aria-label="Publish options">
+            <button type="button" role="menuitem">Preview Publish</button>
+            <button type="button" role="menuitem">Schedule Publish</button>
+            <button type="button" role="menuitem">Export Package</button>
+          </div>
+        </div>
+        <span class="username">John Doe Flintstone</span>
+      </div>
+    </header>
+
+    <nav class="product-nav" aria-label="Product sections">
+      <a href="#" class="tab active">Getting Started</a>
+      <a href="#" class="tab">Create Course</a>
+      <a href="#" class="tab">Adaptive</a>
+      <a href="#" class="tab">Knowledge Check</a>
+      <a href="#" class="tab">Disclosure</a>
+      <a href="#" class="tab">Gamification</a>
+      <a href="#" class="tab">Features</a>
+      <a href="#" class="tab">History</a>
+    </nav>
+
+    <main class="page" id="main-content">
+      <div class="layout-grid">
+        <section class="panel main-panel" aria-labelledby="course-info-title">
+          <h1 id="course-info-title">Course Information</h1>
+
+          <form class="form-stack" novalidate>
+            <div class="field">
+              <label for="courseName">Course Name <span class="required" aria-hidden="true">*</span></label>
+              <input id="courseName" name="courseName" type="text" value="Modular Code of Conduct" required />
+            </div>
+
+            <fieldset class="field">
+              <legend>Course Type <span class="required" aria-hidden="true">*</span></legend>
+              <div class="type-grid" role="group" aria-label="Course type cards">
+                <button type="button" class="type-card" data-type="Custom" aria-pressed="false">Custom</button>
+                <button type="button" class="type-card" data-type="Semi-Custom" aria-pressed="false">Semi-Custom</button>
+                <button type="button" class="type-card active" data-type="Library" aria-pressed="true">Library</button>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="courseFormat">Which course format would you like to use? <span class="required" aria-hidden="true">*</span></label>
+              <select id="courseFormat" name="courseFormat" required>
+                <option selected>Inspire 2.0</option>
+              </select>
+            </div>
+
+            <div class="field-group muted" aria-label="Set your Inspire theme">
+              <h2 class="subheading">Set your Inspire theme</h2>
+              <div class="field">
+                <label for="themeIcon">Icon</label>
+                <select id="themeIcon" disabled>
+                  <option selected>Font Awesome</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="fontFamily">Font Family</label>
+                <select id="fontFamily" disabled>
+                  <option selected>IBMPlexSans</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="loadAnimation">Page Load Animation</label>
+                <select id="loadAnimation" disabled>
+                  <option selected>Fade In</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field toggle-row">
+              <label for="shapeToggle">Box Container Shape - Should box containers have rounded corners?</label>
+              <button type="button" id="shapeToggle" class="toggle on" aria-pressed="true" aria-label="Rounded corners enabled">
+                <span class="toggle-track"><span class="toggle-knob"></span></span>
+                <span class="toggle-text">Yes</span>
+              </button>
+            </div>
+
+            <hr />
+
+            <div class="field">
+              <label for="topicArea">Course Topic Area <span class="required" aria-hidden="true">*</span></label>
+              <select id="topicArea" required>
+                <option selected>Corporate Governance</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="launchScreen">Get Started Page (Course Launch Screen) <span class="required" aria-hidden="true">*</span></label>
+              <textarea id="launchScreen" rows="5" required></textarea>
+            </div>
+
+            <div class="field field-small">
+              <label for="duration">Course Duration (minutes) <span class="required" aria-hidden="true">*</span></label>
+              <input id="duration" type="number" value="0" min="0" required />
+            </div>
+
+            <div class="inline-grid">
+              <div class="field">
+                <label for="video">Video <span class="required" aria-hidden="true">*</span></label>
+                <select id="video" required>
+                  <option selected>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="audio">Audio <span class="required" aria-hidden="true">*</span></label>
+                <select id="audio" required>
+                  <option selected>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="mobileReady">Mobile Ready <span class="required" aria-hidden="true">*</span></label>
+                <select id="mobileReady" required>
+                  <option selected>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="objective">Course Objective <span class="required" aria-hidden="true">*</span></label>
+              <textarea id="objective" rows="5" required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="customCss">Custom CSS</label>
+              <textarea id="customCss" rows="5"></textarea>
+            </div>
+
+            <hr />
+
+            <section class="metadata-subsection" aria-labelledby="metadata-subtitle">
+              <h2 id="metadata-subtitle" class="subheading">Course Metadata</h2>
+              <div class="field">
+                <label for="courseNotes">Course Notes</label>
+                <textarea id="courseNotes" rows="4"></textarea>
+              </div>
+              <div class="field">
+                <label for="courseTags">Course Tags</label>
+                <textarea id="courseTags" rows="4"></textarea>
+              </div>
+              <div class="inline-grid">
+                <div class="field">
+                  <label for="author">Author</label>
+                  <input id="author" type="text" />
+                </div>
+                <div class="field">
+                  <label for="sme">SME</label>
+                  <input id="sme" type="text" />
+                </div>
+              </div>
+            </section>
+
+            <button type="button" class="btn btn-primary btn-create" data-toast-trigger="true">Create</button>
+          </form>
+        </section>
+
+        <aside class="panel sidebar" aria-labelledby="sidebar-title">
+          <div class="sidebar-header">
+            <h2 id="sidebar-title">Course Metadata</h2>
+            <button type="button" class="btn btn-primary btn-small" data-toast-trigger="true">Create</button>
+          </div>
+
+          <form class="form-stack" novalidate>
+            <div class="field readonly-row">
+              <span class="label">Course Type</span>
+              <span class="value-pill">Draft</span>
+            </div>
+
+            <div class="field">
+              <label for="systemId">System ID</label>
+              <input id="systemId" type="text" value="001234567" readonly />
+            </div>
+
+            <div class="field">
+              <label for="catalogId">Catalog ID</label>
+              <input id="catalogId" type="text" value="ETH000-en" readonly />
+            </div>
+
+            <div class="field">
+              <label for="baseCatalogId">Base Catalog ID <span class="required" aria-hidden="true">*</span></label>
+              <input id="baseCatalogId" type="text" value="ETH000" required />
+              <p class="helper-text">Alphanumeric i.e. XYZ000</p>
+            </div>
+
+            <div class="field">
+              <label for="learningFormat">Learning Format <span class="required" aria-hidden="true">*</span></label>
+              <select id="learningFormat" required>
+                <option selected>Foundational</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="courseLanguage">Course Language <span class="required" aria-hidden="true">*</span></label>
+              <select id="courseLanguage" required>
+                <option selected>English</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="courseProgression">Course Progression</label>
+              <select id="courseProgression">
+                <option selected>Select</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="parentCatalogId">Parent Catalog ID</label>
+              <input id="parentCatalogId" type="text" value="" readonly disabled />
+            </div>
+
+            <div class="field">
+              <label for="linkedCourses">Linked Courses</label>
+              <input id="linkedCourses" type="text" />
+              <p class="helper-text">The linked courses should be comma separated</p>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </main>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
