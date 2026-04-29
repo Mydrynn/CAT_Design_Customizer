@@ -30,6 +30,7 @@
     { text: 'No', selected: false },
   ];
   const assetTypeOptions = [
+    { text: '--', selected: true },
     { text: 'Video', selected: true },
     { text: 'Audio', selected: false },
     { text: 'Document', selected: false },
