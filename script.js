@@ -21,6 +21,9 @@
   const authorSmeGrid = document.getElementById('authorSmeGrid');
   const mobileReadyLabel = document.getElementById('mobileReadyLabel');
   const mobileReadySelect = document.getElementById('mobileReady');
+  const learningFormatField = document.getElementById('learningFormatField');
+  const courseProgressionField = document.getElementById('courseProgressionField');
+  const linkedCoursesField = document.getElementById('linkedCoursesField');
 
   const mobileReadyDefaultOptions = [
     { text: 'Yes', selected: true },
@@ -44,6 +47,10 @@
 
   function applyAssetMode(isAsset) {
     [themeSection, shapeToggleRow, launchScreenField, videoField, audioField, objectiveField, courseNotesField, courseTagsField, customCssField, authorSmeGrid].forEach((el) => {
+      if (el) el.classList.toggle('hidden', isAsset);
+    });
+
+    [learningFormatField, courseProgressionField, linkedCoursesField].forEach((el) => {
       if (el) el.classList.toggle('hidden', isAsset);
     });
 
