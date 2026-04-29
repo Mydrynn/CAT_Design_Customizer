@@ -11,6 +11,10 @@
   --focus: #0d9fa480;
 }
 
+.hidden {
+  display: none;
+}
+
 * {
   box-sizing: border-box;
 }
