@@ -14,6 +14,9 @@
   const launchScreenField = document.getElementById('launchScreenField');
   const videoField = document.getElementById('videoField');
   const audioField = document.getElementById('audioField');
+  const objectiveField = document.getElementById('objectiveField');
+  const courseNotesField = document.getElementById('courseNotesField');
+  const authorSmeGrid = document.getElementById('authorSmeGrid');
   const mobileReadyLabel = document.getElementById('mobileReadyLabel');
   const mobileReadySelect = document.getElementById('mobileReady');
 
@@ -38,7 +41,7 @@
   }
 
   function applyAssetMode(isAsset) {
-    [themeSection, shapeToggleRow, launchScreenField, videoField, audioField].forEach((el) => {
+    [themeSection, shapeToggleRow, launchScreenField, videoField, audioField, objectiveField, courseNotesField, authorSmeGrid].forEach((el) => {
       if (el) el.classList.toggle('hidden', isAsset);
     });
 
