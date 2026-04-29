@@ -139,6 +139,29 @@
               </div>
             </div>
 
+            <div id="assetUploadSection" class="hidden">
+              <div id="primaryDropTarget" class="drop-target" role="button" tabindex="0" aria-label="Upload asset file">
+                <span class="drop-icon" aria-hidden="true">⬆</span>
+                <p class="drop-text">Drop file here or <span class="drop-link">browse</span></p>
+                <p id="primaryDropHint" class="drop-hint"></p>
+                <p id="primaryFileName" class="drop-selected hidden"></p>
+                <input id="primaryFileInput" type="file" class="visually-hidden" aria-hidden="true" />
+              </div>
+              <div id="subtitleDropTarget" class="drop-target hidden" role="button" tabindex="0" aria-label="Upload subtitle file">
+                <span class="drop-icon" aria-hidden="true">⬆</span>
+                <p class="drop-text">Drop subtitle file here or <span class="drop-link">browse</span></p>
+                <p class="drop-hint">Supported: .vtt, .srt</p>
+                <p id="subtitleFileName" class="drop-selected hidden"></p>
+                <input id="subtitleFileInput" type="file" class="visually-hidden" aria-hidden="true" accept=".vtt,.srt" />
+              </div>
+              <div id="completionButtonField" class="hidden">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="addCompletionButton" />
+                  Add completion button
+                </label>
+              </div>
+            </div>
+
             <div id="objectiveField" class="field">
               <label for="objective">Course Objective <span class="required" aria-hidden="true">*</span></label>
               <textarea id="objective" rows="5" required></textarea>
