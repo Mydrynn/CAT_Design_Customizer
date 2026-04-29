@@ -25,6 +25,23 @@
   const courseProgressionField = document.getElementById('courseProgressionField');
   const linkedCoursesField = document.getElementById('linkedCoursesField');
 
+  // Asset upload elements
+  const assetUploadSection = document.getElementById('assetUploadSection');
+  const primaryDropTarget = document.getElementById('primaryDropTarget');
+  const primaryDropHint = document.getElementById('primaryDropHint');
+  const primaryFileInput = document.getElementById('primaryFileInput');
+  const primaryFileName = document.getElementById('primaryFileName');
+  const subtitleDropTarget = document.getElementById('subtitleDropTarget');
+  const subtitleFileInput = document.getElementById('subtitleFileInput');
+  const subtitleFileName = document.getElementById('subtitleFileName');
+  const completionButtonField = document.getElementById('completionButtonField');
+
+  const assetAcceptMap = {
+    Video: { accept: '.mp4', hint: 'Supported: .mp4' },
+    Audio: { accept: '.mp3', hint: 'Supported: .mp3' },
+    Document: { accept: '.doc,.docx,.pdf', hint: 'Supported: .doc, .docx, .pdf' },
+  };
+
   const mobileReadyDefaultOptions = [
     { text: 'Yes', selected: true },
     { text: 'No', selected: false },
@@ -66,9 +83,101 @@
     }
   }
 
+  function updateAssetUpload() {
+    const isAsset = courseFormat && courseFormat.value === 'Asset';
+    const assetType = mobileReadySelect ? mobileReadySelect.value : '--';
+
+    if (!isAsset || assetType === '--') {
+      if (assetUploadSection) assetUploadSection.classList.add('hidden');
+      return;
+    }
+
+    if (assetUploadSection) assetUploadSection.classList.remove('hidden');
+
+    const config = assetAcceptMap[assetType];
+    if (config) {
+      if (primaryFileInput) primaryFileInput.setAttribute('accept', config.accept);
+      if (primaryDropHint) primaryDropHint.textContent = config.hint;
+    }
+
+    if (subtitleDropTarget) subtitleDropTarget.classList.toggle('hidden', assetType === 'Document');
+    if (completionButtonField) completionButtonField.classList.toggle('hidden', assetType !== 'Document');
+  }
+
+  function handleDrop(dropTarget, fileInput, fileNameEl, allowedExts) {
+    function setFile(file) {
+      const dotIndex = file.name.lastIndexOf('.');
+      const ext = dotIndex !== -1 ? file.name.slice(dotIndex).toLowerCase() : '';
+      if (!ext || !allowedExts().includes(ext)) {
+        if (fileNameEl) {
+          fileNameEl.textContent = '⚠ Invalid file type: ' + (file.name || 'unknown');
+          fileNameEl.classList.remove('hidden');
+          fileNameEl.classList.add('drop-error');
+        }
+        return;
+      }
+      if (fileNameEl) {
+        fileNameEl.textContent = '📄 ' + file.name;
+        fileNameEl.classList.remove('hidden');
+        fileNameEl.classList.remove('drop-error');
+      }
+    }
+
+    if (dropTarget) {
+      dropTarget.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropTarget.classList.add('drag-over');
+      });
+      dropTarget.addEventListener('dragleave', () => dropTarget.classList.remove('drag-over'));
+      dropTarget.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropTarget.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file) setFile(file);
+      });
+      dropTarget.addEventListener('click', () => fileInput && fileInput.click());
+      dropTarget.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (fileInput) fileInput.click();
+        }
+      });
+    }
+
+    if (fileInput) {
+      fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        if (file) setFile(file);
+      });
+    }
+  }
+
+  handleDrop(
+    primaryDropTarget,
+    primaryFileInput,
+    primaryFileName,
+    () => {
+      const assetType = mobileReadySelect ? mobileReadySelect.value : '--';
+      const config = assetAcceptMap[assetType];
+      return config ? config.accept.split(',') : [];
+    }
+  );
+
+  handleDrop(
+    subtitleDropTarget,
+    subtitleFileInput,
+    subtitleFileName,
+    () => ['.vtt', '.srt']
+  );
+
+  if (mobileReadySelect) {
+    mobileReadySelect.addEventListener('change', updateAssetUpload);
+  }
+
   if (courseFormat) {
     courseFormat.addEventListener('change', () => {
       applyAssetMode(courseFormat.value === 'Asset');
+      updateAssetUpload();
     });
   }
 
