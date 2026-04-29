@@ -6,6 +6,58 @@
   const publishButton = document.getElementById('publishButton');
   const toastContainer = document.getElementById('toastContainer');
   const toastTriggers = document.querySelectorAll('[data-toast-trigger="true"]');
+  const courseFormat = document.getElementById('courseFormat');
+
+  // Elements toggled when "Asset" format is selected
+  const themeSection = document.getElementById('themeSection');
+  const shapeToggleRow = document.getElementById('shapeToggleRow');
+  const launchScreenField = document.getElementById('launchScreenField');
+  const videoField = document.getElementById('videoField');
+  const audioField = document.getElementById('audioField');
+  const mobileReadyLabel = document.getElementById('mobileReadyLabel');
+  const mobileReadySelect = document.getElementById('mobileReady');
+
+  const mobileReadyDefaultOptions = [
+    { text: 'Yes', selected: true },
+    { text: 'No', selected: false },
+  ];
+  const assetTypeOptions = [
+    { text: 'Video', selected: true },
+    { text: 'Audio', selected: false },
+    { text: 'Document', selected: false },
+  ];
+
+  function setSelectOptions(selectEl, options) {
+    selectEl.innerHTML = '';
+    options.forEach(({ text, selected }) => {
+      const opt = document.createElement('option');
+      opt.textContent = text;
+      opt.selected = selected;
+      selectEl.appendChild(opt);
+    });
+  }
+
+  function applyAssetMode(isAsset) {
+    [themeSection, shapeToggleRow, launchScreenField, videoField, audioField].forEach((el) => {
+      if (el) el.classList.toggle('hidden', isAsset);
+    });
+
+    if (mobileReadyLabel) {
+      const span = mobileReadyLabel.querySelector('span');
+      mobileReadyLabel.textContent = isAsset ? 'Asset Type ' : 'Mobile Ready ';
+      if (span) mobileReadyLabel.appendChild(span);
+    }
+
+    if (mobileReadySelect) {
+      setSelectOptions(mobileReadySelect, isAsset ? assetTypeOptions : mobileReadyDefaultOptions);
+    }
+  }
+
+  if (courseFormat) {
+    courseFormat.addEventListener('change', () => {
+      applyAssetMode(courseFormat.value === 'Asset');
+    });
+  }
 
   courseCards.forEach((card) => {
     card.addEventListener('click', () => {

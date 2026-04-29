@@ -61,10 +61,12 @@
               <label for="courseFormat">Which course format would you like to use? <span class="required" aria-hidden="true">*</span></label>
               <select id="courseFormat" name="courseFormat" required>
                 <option selected>Inspire 2.0</option>
+                <option>FluidX</option>
+                <option>Asset</option>
               </select>
             </div>
 
-            <div class="field-group muted" aria-label="Set your Inspire theme">
+            <div id="themeSection" class="field-group muted" aria-label="Set your Inspire theme">
               <h2 class="subheading">Set your Inspire theme</h2>
               <div class="field">
                 <label for="themeIcon">Icon</label>
@@ -86,7 +88,7 @@
               </div>
             </div>
 
-            <div class="field toggle-row">
+            <div id="shapeToggleRow" class="field toggle-row">
               <label for="shapeToggle">Box Container Shape - Should box containers have rounded corners?</label>
               <button type="button" id="shapeToggle" class="toggle on" aria-pressed="true" aria-label="Rounded corners enabled">
                 <span class="toggle-track"><span class="toggle-knob"></span></span>
@@ -103,7 +105,7 @@
               </select>
             </div>
 
-            <div class="field">
+            <div id="launchScreenField" class="field">
               <label for="launchScreen">Get Started Page (Course Launch Screen) <span class="required" aria-hidden="true">*</span></label>
               <textarea id="launchScreen" rows="5" required></textarea>
             </div>
@@ -114,14 +116,14 @@
             </div>
 
             <div class="inline-grid">
-              <div class="field">
+              <div id="videoField" class="field">
                 <label for="video">Video <span class="required" aria-hidden="true">*</span></label>
                 <select id="video" required>
                   <option selected>Yes</option>
                   <option>No</option>
                 </select>
               </div>
-              <div class="field">
+              <div id="audioField" class="field">
                 <label for="audio">Audio <span class="required" aria-hidden="true">*</span></label>
                 <select id="audio" required>
                   <option selected>Yes</option>
@@ -129,7 +131,7 @@
                 </select>
               </div>
               <div class="field">
-                <label for="mobileReady">Mobile Ready <span class="required" aria-hidden="true">*</span></label>
+                <label id="mobileReadyLabel" for="mobileReady">Mobile Ready <span class="required" aria-hidden="true">*</span></label>
                 <select id="mobileReady" required>
                   <option selected>Yes</option>
                   <option>No</option>
