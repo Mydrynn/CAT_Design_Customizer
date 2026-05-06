@@ -24,6 +24,7 @@
   const learningFormatField = document.getElementById('learningFormatField');
   const courseProgressionField = document.getElementById('courseProgressionField');
   const linkedCoursesField = document.getElementById('linkedCoursesField');
+  const assetDescriptionField = document.getElementById('assetDescriptionField');
 
   // Asset upload elements
   const assetUploadSection = document.getElementById('assetUploadSection');
@@ -81,13 +82,24 @@
     if (mobileReadySelect) {
       setSelectOptions(mobileReadySelect, isAsset ? assetTypeOptions : mobileReadyDefaultOptions);
     }
+
+    // When leaving Asset mode, always hide the asset-only description field.
+    if (!isAsset && assetDescriptionField) {
+      assetDescriptionField.classList.add('hidden');
+    }
   }
 
   function updateAssetUpload() {
     const isAsset = courseFormat && courseFormat.value === 'Asset';
     const assetType = mobileReadySelect ? mobileReadySelect.value : '--';
 
-    if (!isAsset || assetType === '--') {
+    const hasAssetType = isAsset && assetType !== '--';
+
+    if (assetDescriptionField) {
+      assetDescriptionField.classList.toggle('hidden', !hasAssetType);
+    }
+
+    if (!hasAssetType) {
       if (assetUploadSection) assetUploadSection.classList.add('hidden');
       return;
     }
