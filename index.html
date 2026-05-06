@@ -101,7 +101,23 @@
             <div class="field">
               <label for="topicArea">Course Topic Area <span class="required" aria-hidden="true">*</span></label>
               <select id="topicArea" required>
-                <option selected>Corporate Governance</option>
+                <option selected>Anti-Money Laundering</option>
+                <option>Antitrust &amp; Competition</option>
+                <option>Bribery &amp; Corruption</option>
+                <option>Conflicts Of Interest</option>
+                <option>Corporate Governance</option>
+                <option>Corporate Social Responsibility</option>
+                <option>Data Protection &amp; Privacy</option>
+                <option>Employment</option>
+                <option>Ethical Leadership</option>
+                <option>Ethics &amp; Compliance Program Management</option>
+                <option>Gifts &amp; Entertainment/Hospitality</option>
+                <option>Government Contracting And Relationships</option>
+                <option>Harassment And Discrimination</option>
+                <option>Healthcare &amp; Pharma</option>
+                <option>Hotline, Reporting &amp; Investigations</option>
+                <option>Intellectual Property</option>
+                <option>Records Management</option>
               </select>
             </div>
 
@@ -137,6 +153,11 @@
                   <option>No</option>
                 </select>
               </div>
+            </div>
+
+            <div id="assetDescriptionField" class="field hidden">
+              <label for="assetDescription">Description</label>
+              <textarea id="assetDescription" name="assetDescription" rows="4"></textarea>
             </div>
 
             <div id="assetUploadSection" class="hidden">
@@ -175,7 +196,7 @@
             <hr />
 
             <section class="metadata-subsection" aria-labelledby="metadata-subtitle">
-              <h2 id="metadata-subtitle" class="subheading">Course Metadata</h2>
+              <h2 id="metadata-subtitle" class="subheading visually-hidden">Course Metadata</h2>
               <div id="courseNotesField" class="field">
                 <label for="courseNotes">Course Notes</label>
                 <textarea id="courseNotes" rows="4"></textarea>
@@ -202,7 +223,7 @@
 
         <aside class="panel sidebar" aria-labelledby="sidebar-title">
           <div class="sidebar-header">
-            <h2 id="sidebar-title">Course Metadata</h2>
+            <h2 id="sidebar-title" class="visually-hidden">Course Metadata</h2>
             <button type="button" class="btn btn-primary btn-small" data-toast-trigger="true">Create</button>
           </div>
 
