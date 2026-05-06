@@ -64,7 +64,7 @@
   }
 
   function applyAssetMode(isAsset) {
-    [themeSection, shapeToggleRow, launchScreenField, videoField, audioField, objectiveField, courseNotesField, courseTagsField, customCssField, authorSmeGrid].forEach((el) => {
+    [themeSection, shapeToggleRow, launchScreenField, videoField, audioField, objectiveField, courseNotesField, courseTagsField, authorSmeGrid].forEach((el) => {
       if (el) el.classList.toggle('hidden', isAsset);
     });
 
