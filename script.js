@@ -36,6 +36,8 @@
   const subtitleFileInput = document.getElementById('subtitleFileInput');
   const subtitleFileName = document.getElementById('subtitleFileName');
   const completionButtonField = document.getElementById('completionButtonField');
+  const addCompletionButton = document.getElementById('addCompletionButton');
+  const completionFields = document.getElementById('completionFields');
 
   const assetAcceptMap = {
     Video: { accept: '.mp4', hint: 'Supported: .mp4' },
@@ -62,6 +64,20 @@
       opt.selected = selected;
       selectEl.appendChild(opt);
     });
+  }
+
+  function syncCompletionFields() {
+    const shouldShow = Boolean(
+      completionFields &&
+      completionButtonField &&
+      !completionButtonField.classList.contains('hidden') &&
+      addCompletionButton &&
+      addCompletionButton.checked
+    );
+
+    if (completionFields) {
+      completionFields.classList.toggle('hidden', !shouldShow);
+    }
   }
 
   function applyAssetMode(isAsset) {
@@ -101,6 +117,9 @@
 
     if (!hasAssetType) {
       if (assetUploadSection) assetUploadSection.classList.add('hidden');
+      if (completionButtonField) completionButtonField.classList.add('hidden');
+      if (addCompletionButton) addCompletionButton.checked = false;
+      syncCompletionFields();
       return;
     }
 
@@ -114,6 +133,10 @@
 
     if (subtitleDropTarget) subtitleDropTarget.classList.toggle('hidden', assetType === 'Document');
     if (completionButtonField) completionButtonField.classList.toggle('hidden', assetType !== 'Document');
+    if (assetType !== 'Document' && addCompletionButton) {
+      addCompletionButton.checked = false;
+    }
+    syncCompletionFields();
   }
 
   function handleDrop(dropTarget, fileInput, fileNameEl, allowedExts) {
@@ -181,6 +204,10 @@
     subtitleFileName,
     () => ['.vtt', '.srt']
   );
+
+  if (addCompletionButton) {
+    addCompletionButton.addEventListener('change', syncCompletionFields);
+  }
 
   if (mobileReadySelect) {
     mobileReadySelect.addEventListener('change', updateAssetUpload);
@@ -253,4 +280,6 @@
       toast.remove();
     }, 2400);
   }
+
+  updateAssetUpload();
 })();

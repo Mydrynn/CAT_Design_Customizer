@@ -135,6 +135,12 @@ h2,
   max-width: 200px;
 }
 
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .inline-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
